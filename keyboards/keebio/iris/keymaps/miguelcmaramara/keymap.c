@@ -2,16 +2,20 @@
 
 
 #define _QWERTY 0
-#define _LOWER 1
-#define _RAISE 2
-#define _ADJUST 3
-#define _GAMING 4
+#define _ISSAC 1
+#define _LOWER 2
+#define _RAISE 3
+#define _ADJUST 4
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER,
+enum custom_keycodes {
+  QWERTY = SAFE_RANGE,
+  ISSAC,
+  LOWER,
   RAISE,
   ADJUST,
-  GAMING,
-}; const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
@@ -26,9 +30,23 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER,
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
+  [_ISSAC] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,          _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,_______, 
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                    KC_LGUI, LOWER,   KC_SPC,                    _______, _______, _______
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+  ),
+
   [_LOWER] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+     KC_GRV, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      QK_BOOT, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_END,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -65,20 +83,6 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER,
      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
-                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
-  ),
-
-  [_GAMING] = LAYOUT(
-  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               _______, _______, _______, _______, _______, _______,
-  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               _______, _______, _______, _______, _______, _______,
-  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,          _______, _______, _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______,
-  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LGUI, LOWER,   KC_SPC,                    _______, _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
@@ -124,23 +128,67 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 /*
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) { return false; }
-    if (index == 0) {
+uint8_t selected_layer = 0;
+void encoder_update_user(uint8_t index, bool clockwise) {
+   if (index == 0) {
+      if (clockwise) {
+         tap_code(KC_VOLU);
+      } else {
+         tap_code(KC_VOLD);
+      }
+   } else if (index == 1) {
+      if (!clockwise && selected_layer  < 10) {
+         selected_layer ++;
+      } else if (clockwise && selected_layer  > 0){
+         selected_layer --;
+      }
+      tap_code(DF(selected_layer));
+      */
+      /*
         if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    } else if (index == 1) {
-        if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
-            tap_code(KC_PGUP);
-        }
+            if(selected_layer < num_def_layers - 1)
+               selected_layer++;
+            else
+               selected_layer = 0;
+        } else if (!clockwise) {
+            if(selected_layer > 0)
+               selected_layer--;
+            else
+               selected_layer = num_def_layers - 1;
+        }*/
+        /*
     }
 }
 */
+uint8_t selected_layer = 0;
+uint8_t num_def_layers = 2;
+bool encoder_update_user(uint8_t index, bool clockwise) {
+   switch (index) {
+      case 0:
+         if (clockwise) {
+            tap_code(KC_VOLU);
+         } else {
+            tap_code(KC_VOLD);
+         }
+         break;
+      case 1:
+         if (clockwise) {
+            if(selected_layer < num_def_layers - 1)
+               selected_layer++;
+            else
+               selected_layer = 0;
+         } else if (!clockwise) {
+            if(selected_layer > 0)
+               selected_layer--;
+            else
+               selected_layer = num_def_layers - 1;
+         }
+         layer_clear();
+         layer_on(selected_layer);
+         break;
+   }
+   return false;
+}
 
 /*
 led_config_t g_led_config = { {
